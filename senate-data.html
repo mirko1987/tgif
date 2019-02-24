@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="image/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon"/>
+
+<link rel="stylesheet" href="stile.css" type="text/css">
+
+
+
+    <title>Senate-data</title>
+</head>
+
+<body>
+<!-----------------parte della testa --------------------------->
+<div class="container">
+<header id="page-header"class="flex-row">
+    
+    <div><img id="logo" class="" src="image/imageedit_11_4178752366.gif" alt="TGIF_logo"></div>
+            <div id="info" class="flex-around-end">
+                <a href="mailto:info@tgif.net"><img src="image/icons8-secured-letter-16.png">info@tgif.net</a>
+            </div>
+    
+    
+    </header>
+    
+
+<!-----------------------------------fine parte della testa --------------------------------------------->
+
+    <!-----inserire la nav di bootstrap---->
+   <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color:#0157ae">
+  <a class="navbar-brand" href="#"><img  class="leftnav" id="logo2" src="image/logo.jpg"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item  ">
+        <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown""nav-item active">
+                        <a href="#" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Congress 113</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <li><a class="dropdown-item" href="senate-data.html">Senate</a></li>
+                            <li><a class="dropdown-item" href="house-data.html">House</a></li>
+
+                        </ul>
+                    </li>
+      <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Attendance</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <li><a class="dropdown-item" href="Senate_attend.html">Senate</a></li>
+                            <li><a class="dropdown-item" href="house_attend.html">House</a></li>
+
+                        </ul>
+                    </li>
+      <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">party loyality</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <li><a class="dropdown-item" href="senate-party-loyalty.html">Senate</a></li>
+                            <li><a class="dropdown-item" href="house-party-loyalty.html">House</a></li>
+
+                        </ul>
+                    </li>
+    </ul>
+  </div>
+</nav>     
+</div>
+    <!-----div grande----->
+    
+        <!--- intestazione pagina ---->
+<div class="container">
+        <h2 style="color:red">Senators</h2>
+        <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+        <!----- creare i checkboxe  qui------>
+        
+           
+    </div>
+                  
+<div  class="container" id="app">
+    
+           <div id="checkboxes"  class="flex-row"  >
+                      <div class="flex-center">
+
+            <div class="flex-label">
+                <input type="checkbox" value="D" v-model="selected_party">
+                Democratic
+                          </div>
+
+        
+        
+            <div class="flex-label"><input type="checkbox" value="I" v-model="selected_party">Indipendence</div>
+        
+        
+            <div class="flex-label"><input type="checkbox" value="R" v-model="selected_party">Republic</div>
+                          
+        </div>
+
+    
+    
+    <!------- fine checkboxe-------->
+    
+    
+    <div>
+                <label> Filter By State:
+                    <select v-model="selected_state">
+                        <option value="all" selected>All States Selected</option>
+                        <option v-for="member in state_dropdown" v-bind:value="member">{{FullNameStatesD[member]}}</option>
+                    </select>
+                </label>
+            </div>
+     <div class="search_box">
+                <input type="text" placeholder="Search members" v-model="search">
+            </div>
+    </div>
+    
+    
+   <table class="table table-striped" >
+        <thead class="thead-dark">
+            <tr>
+               <th v-on:click="sort_value_identifier('last_name')">Name</th>
+                    <th v-on:click="sort_value_identifier('party')">Party</th>
+                    <th v-on:click="sort_value_identifier('state')">State</th>
+                    <th v-on:click="sort_value_identifier('seniority')">Years in Office</th>
+                    <th v-on:click="sort_value_identifier('votes_with_party_pct')">% Votes/Party</th>
+            </tr>
+        </thead>
+        
+        <tr v-for="member in update_table">
+                    <td> <a :href="member.url" target="_blank">{{member.first_name}} {{member.middle_name}} {{member.last_name}} </a> </td>
+                    <td> {{member.party}}</td>
+                    <td> {{member.state}}</td>
+                    <td> {{member.seniority}}</td>
+                    <td> {{member.votes_with_party_pct}}%</td>
+                </tr>
+        
+    </table>
+    <div v-show="loading" class="loader_position">
+            <div class="loader"></div>
+        </div>
+
+   
+
+
+    </div>
+
+
+
+
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+        <script src="-congress-113-senate.js"></script>
+        <!------ script bootstrap------>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <!-----fine script bootstrap------>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--        <script src="main.js"></script>-->
+        <!------load toogle------>
+        <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+        <!--------------------------------Caricamento vue---------------------------------------------------------->
+         <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="vue.js"></script>
+
+
+<div class="container footer">
+        <nav class="navbar navbar-default flex-center" >
+            <div class="navbar-header">
+                <p>&#169; 2017 TGIF | All Rights Reserved</p>
+            </div>
+        </nav>
+    </div>
+
+    
+</body>
+
+</html>

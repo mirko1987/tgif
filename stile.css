@@ -1,0 +1,157 @@
+/*------------------------------------------------------------------------------------------------------------------*/
+/*                  Inserisco  la font                                                                             */
+/*------------------------------------------------------------------------------------------------------------------*/
+
+@font-face {
+    src: url(...\font\Exo2-Regular.ttf));
+    font-family: Exo2-Regular;
+}
+
+
+
+
+
+
+
+/*------------------------------------------------------------------------------------------------------------------*/
+/*                                      fine font                                                                   */
+/*------------------------------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------------------------------------------*/
+/*                                      LOADER                                                                      */
+/*------------------------------------------------------------------------------------------------------------------*/
+.loader_position {
+    display: flex;
+    justify-content: center;
+}
+
+.loader {
+    border: 16px solid #001f3f;
+    border-radius: 50%;
+    border-top: 16px solid red;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*------------------------------------------------------------------------------------------------------------------*/
+/*                                   END     LOADER                                                                 */
+/*------------------------------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------------nav bar------------------------------------------------*/
+
+
+
+nav{
+    
+    border-radius:20px;
+}
+
+nav ul li{
+    
+    font-family: Exo2-Regular;
+    font-size:15px;
+    font-weight: :bolder;
+    
+}
+/*------------------------------------------end nav bar-------------------------------------------*/
+
+/*----------------------------------------classi e id for head------------------------------------*/
+
+.flex-label {
+    display: flex; 
+    flex-direction: row; 
+    align-content: center;
+}
+
+#checkboxes {
+    margin-top: 20px;
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+}
+
+
+#page-header {
+    background-image: url(image/Flags%202.jpg);
+    background-repeat: no-repeat;
+    background-position: 0 -60px;
+    background-size: cover;
+    margin : 20px 0;
+    height : 200px;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.flex-row {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flex-around-end {
+    display: flex; 
+    justify-content: space-around;
+    align-items: flex-end; 
+}
+.leftnav {
+  position: absolute;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+#logo {
+    width: 150px;
+        position: relative;
+    top: 70px;
+}
+
+#logo2 {
+       width: 60px;
+    position: relative;
+    bottom: 20px;
+}
+
+.attendance-table {
+    flex-shrink: 0;
+    margin-left: 30px;
+}
+
+attendance-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+} 
+.attendance-table {
+    flex-shrink: 0;
+    margin-left: 30px;
+}
+
+.flex-between-start {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.attendance-section {
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eee;
+}
+/* prova show more pure stile csss*/
+
